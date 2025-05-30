@@ -9,7 +9,7 @@ const multer = require("multer");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
-
+const MongoStore = require('connect-mongo');//--------------------------------
 // ✅ Use .env for sensitive data like MONGO_URI
 dotEnv.config();
 
@@ -34,7 +34,9 @@ app.use(
         secret: "super-secret-key", 
         resave: false,
         saveUninitialized: true,
-        cookie: { secure: false }, 
+        cookie: { secure: false },
+        store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })//--------------
+
     })
 );
 
