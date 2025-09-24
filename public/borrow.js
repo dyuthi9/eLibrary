@@ -56,39 +56,6 @@ function displayBorrowedBooks(borrows) {
         container.appendChild(div);
     });
 }
-
-// // ✅ Display borrowed books with return date
-// function displayBorrowedBooks(books) {
-//     const container = document.getElementById("borrowed-books-container");
-//     container.innerHTML = "";
-
-//     if (books.length === 0) {
-//         container.innerHTML = "<p>No books borrowed yet.</p>";
-//         return;
-//     }
-
-//     books.forEach(book => {
-//         const borrowDate = new Date(book.borrowDate);
-//         const returnDate = new Date(borrowDate);
-//         returnDate.setMonth(returnDate.getMonth() + 1); // Add 1 month to borrow date
-
-//         const div = document.createElement("div");
-//         div.innerHTML = `
-//             <p>
-//                 <strong>${book.bookId.name}</strong> by ${book.bookId.author} <br>
-//                 - Borrowed on ${borrowDate.toLocaleDateString()} <br>
-//                 - <strong>Return by ${returnDate.toLocaleDateString()}</strong>
-//             </p><button type="submit" id="return"> Return</button>`;
-//         container.appendChild(div);
-//     });
-// }
-// document.addEventListener("DOMContentLoaded", function () {
-//     fetch("/borrowed-books")
-//         .then(res => res.json())
-//         .then(books => displayBorrowedBooks(books))
-//         .catch(err => console.error("❌ Error fetching borrowed books:", err));
-// });
-
 // ✅ Display borrowed books with correct return button states
 function displayBorrowedBooks(books) {
     const container = document.getElementById("borrowed-books-container");
@@ -151,3 +118,4 @@ async function requestReturn(borrowId) {
         button.disabled = true;
     }
 }
+
