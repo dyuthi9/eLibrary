@@ -55,22 +55,6 @@ async function approveReturn(borrowId) {
         console.error("❌ Error approving return request:", error);
     }
 }
-
-// ✅ Load Student Details
-// async function loadStudentsDetails() {
-//     try {
-//         const response = await fetch("/students");
-//         const data = await response.json();
-//         const table = document.getElementById("studentsList");
-//         if (table) {
-//             table.innerHTML = data.map(student => `<tr><td>${student.registerno}</td><td>${student.name}</td><td>${student.email}</td></tr>`).join("");
-//         }
-//     } catch (error) {
-//         console.error("❌ Error fetching student details:", error);
-//     }
-
-// }
-
 // ✅ Load Books Details
 async function loadBooksDetails() {
     try {
@@ -331,4 +315,5 @@ function formatDate(dateString) {
 }
 document.getElementById("closeModal").addEventListener("click", () => {
     document.getElementById("studentModal").classList.add("hidden");
+
 });
