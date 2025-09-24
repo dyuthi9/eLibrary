@@ -9,8 +9,7 @@ const multer = require("multer");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
-const MongoStore = require('connect-mongo');//--------------------------------
-// ✅ Use .env for sensitive data like MONGO_URI
+const MongoStore = require('connect-mongo');
 dotEnv.config();
 
 // ✅ MongoDB Atlas Connection
@@ -35,7 +34,7 @@ app.use(
         resave: false,
         saveUninitialized: true,
         cookie: { secure: false },
-        store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })//--------------
+        store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
 
     })
 );
@@ -350,9 +349,6 @@ app.post("/login1", async (req, res) => {
     }
 });
 //////////----------------------------------------------------request for admin
-// ✅ Add `returnRequested` and `returnApproved` to Borrow Schema
-
-
 // ✅ Request Return API
 app.post("/request-return", async (req, res) => {
     const { borrowId } = req.body;
@@ -751,3 +747,4 @@ app.post('/admin-forgot-password', async (req, res) => {
       res.status(500).send('Server error');
     }
   });
+
