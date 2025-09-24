@@ -13,13 +13,25 @@ const MongoStore = require('connect-mongo');
 dotEnv.config();
 
 // ✅ MongoDB Atlas Connection
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+// mongoose.connect(process.env.MONGO_URI, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+// }).then(() => {
+//     console.log("✅ Mongoose connected to Atlas");
+// }).catch((err) => {
+//     console.error("❌ Mongoose connection error:", err);
+// });
+// ✅ MongoDB Atlas Connection (with local fallback)
+const mongoose = require("mongoose");
+
+const uri = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/mydb";
+
+mongoose.connect(uri, {
+  dbName: "mydb"
 }).then(() => {
-    console.log("✅ Mongoose connected to Atlas");
+  console.log("✅ Mongoose connected to:", uri.includes("mongodb+srv") ? "Atlas" : "Local MongoDB");
 }).catch((err) => {
-    console.error("❌ Mongoose connection error:", err);
+  console.error("❌ Mongoose connection error:", err.message);
 });
 
 app.use(cors());
@@ -747,4 +759,5 @@ app.post('/admin-forgot-password', async (req, res) => {
       res.status(500).send('Server error');
     }
   });
+
 
